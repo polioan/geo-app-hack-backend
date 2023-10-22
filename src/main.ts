@@ -61,6 +61,26 @@ async function bootstrap() {
     }
   })
 
+  app.get('/bynameqr', async (req, res, next) => {
+    try {
+      const { name } = req.query
+      if (typeof name !== 'string') {
+        throw ApiError.badRequest('Неправильное имя!')
+      }
+      const data = await getCsvData()
+      const value = data.find(v => v.Name === name)
+      if (!value) {
+        throw ApiError.notFound('Имя не найдено!')
+      }
+      const url = await QRCode.toDataURL(
+        `https://vk.com/app51775653/#qrid=${encodeURIComponent(value.Name)}`
+      )
+      return res.send(`<img src="${url}" alt="QR Code" />`)
+    } catch (e) {
+      return next(e)
+    }
+  })
+
   app.get('/all', async (_req, res, next) => {
     try {
       const data = await getCsvData()
