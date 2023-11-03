@@ -14,6 +14,7 @@
     "dep": "npm ci && npm run build && pm2 start npm --name \"myapp\" -- start --watch"
   },
   "dependencies": {
+    "@polioan/api-error": "^1.0.0",
     "@polioan/common": "^0.0.4",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",

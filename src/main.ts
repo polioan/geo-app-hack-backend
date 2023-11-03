@@ -4,7 +4,7 @@ import { errorHandler } from './middlewares/errorHandler.js'
 import { getEnv } from './common/getEnv.js'
 import { getCsvData } from './data/csv.js'
 import QRCode from 'qrcode'
-import { ApiError } from './common/apiError.js'
+import { ApiError } from '@polioan/api-error'
 import { randomChoice } from '@polioan/common'
 
 const SERVER_URL = getEnv('SERVER_URL')
